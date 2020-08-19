@@ -1,5 +1,11 @@
+import codecs
+import os
+
 file_name = input("Enter the file name of the file to convert: ") #Get the file name to work on
-file=open(file_name,'r+') #Open the file
+file=codecs.open(file_name,'r') #Open the file
+file_name = os.path.splitext(file_name)[0]+'.txt'
+
+output = open(file_name,'w+')
 text = file.read() #Read the string to operate on
 char_num = 0 #Start at the beginning after the first open bracket
 page_name = input("Enter the name of the page to be converted: ")
@@ -38,9 +44,9 @@ while char_num < len(text) - 1: #Go on until reached one before end of file
 
 text = "String " + page_name + " =\n" + text + ";"
 
-file.seek(0)
+output.seek(0)
 print(text)
-file.write(text)
+output.write(text)
 file.close()
-
+output.close()
 input("press enter to quit...")
